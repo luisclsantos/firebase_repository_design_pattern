@@ -1,0 +1,206 @@
+//Add Markers
+                /*await store.addMarkers(
+                  origin: LatLng(-22.4124092738241, -46.964047203972584),
+                  originIcon: _originIcon!,
+                  destination: LatLng(-22.428623912655343, -46.96520258114441),
+                  destinationIcon: _destinationIcon!,
+                );*/
+
+-22.415921448371687, -46.96467825697653
+
+
+
+
+class FloatInfoMap extends StatelessWidget {
+  const FloatInfoMap({
+    Key? key,
+    required Directions? info,
+  })   : _info = info,
+        super(key: key);
+
+  final Directions? _info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: getProportionateScreenHeight(30),
+      child: Observer(
+        builder: (_) {
+          return Container(
+            padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(8),
+              horizontal: getProportionateScreenWidth(20),
+            ),
+            decoration: BoxDecoration(
+              color: kSecondaryColor,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0, 1),
+                  blurRadius: 6,
+                ),
+              ],
+            ),
+            child: Text(
+              '${_info!.totalDistance}, ${_info!.totalDuration}',
+              style: TextStyle(
+                fontSize: getProportionateScreenWidth(18),
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+/*actions: [
+        Observer(
+          builder: (_) {
+            if (store.originMarker != null)
+              return TextButton(
+                onPressed: () => _googleMapController!.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                      target: store.originMarker!.position,
+                      zoom: 14.5,
+                      tilt: 50.0,
+                    ),
+                  ),
+                ),
+                style: TextButton.styleFrom(
+                  primary: kPrimaryColor,
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                child: Text('ORIGIN'),
+              );
+            return Container();
+          },
+        ),
+        Observer(
+          builder: (_) {
+            if (store.destinationMarker != null)
+              return TextButton(
+                onPressed: () => _googleMapController!.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                      target: store.destinationMarker!.position,
+                      zoom: 14.5,
+                      tilt: 50.0,
+                    ),
+                  ),
+                ),
+                style: TextButton.styleFrom(
+                  primary: kSecondaryColor,
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                child: Text('DEST'),
+              );
+            return Container();
+          },
+        ),
+      ],*/
+
+
+ /*if (store.originMarker != null) store.originMarker!,
+                      if (store.destinationMarker != null)
+                        store.destinationMarker!,*/
+                      //Set origin
+
+
+
+
+floatingActionButton: FloatingActionButton(
+        backgroundColor: kPrimaryColor,
+        foregroundColor: Colors.white,
+        onPressed: () {
+          final _updatedCameraPosition = CameraPosition(
+            target: LatLng(
+              store.info!.bounds!.northeast.latitude,
+              store.info!.bounds!.northeast.longitude,
+            ),
+            zoom: 15.5,
+          );
+          _googleMapController!.animateCamera(
+            store.info != null
+                ? CameraUpdate.newCameraPosition(_updatedCameraPosition)
+                : CameraUpdate.newCameraPosition(_initialCameraPosition),
+          );
+        },
+        child: const Icon(FeatherIcons.map),
+      ),
+
+
+//*Set Infos
+    // info = directions;
+
+    //*Save Directions on Firestore
+    await directions!.save(
+      originLatitude: originMarker!.position.latitude,
+      originLongitude: originMarker!.position.longitude,
+      destinationLatitude: originMarker!.position.latitude,
+      destinationLongitude: originMarker!.position.latitude,
+      totalDistance: info!.totalDistance!,
+      totalDuration: info!.totalDuration!,
+    );
+
+
+
+
+ //*Add Marker's Method
+  /*@action
+  Future<Directions?> addMarkers({
+    required LatLng origin,
+    required BitmapDescriptor originIcon,
+    required LatLng destination,
+    required BitmapDescriptor destinationIcon,
+  }) async {
+    //Set origin
+    originMarker = Marker(
+      markerId: const MarkerId('origin'),
+      infoWindow: const InfoWindow(title: 'Origin'),
+      icon: originIcon,
+      position: origin,
+    );
+
+    //Set destination
+    destinationMarker = Marker(
+      markerId: const MarkerId('destination'),
+      infoWindow: const InfoWindow(title: 'Destination'),
+      icon: destinationIcon,
+      position: destination,
+    );
+  }*/
+
+
+//*Get directions
+/*final directions = await directionsRepository
+     .getDirections(
+         origin: originMarker!.position,
+         destination: destinationMarker!.position)
+     .asObservable();*/
+
+
+//*Origin Marker
+  //@observable
+  //Marker? originMarker;
+
+  //*Destination Marker
+  //@observable
+  //Marker? destinationMarker;
+
+
+
+
+
+
+
+
